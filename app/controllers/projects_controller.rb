@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
     def index
         projects = Project.all
-        render json: projects
+        render json: ProjectSerializer.new(projects).serializable_hash.to_json
     end
 
     # create a new project

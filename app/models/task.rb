@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
     belongs_to :project
 
-    enum status: {0: "active", 1: "archived"}
+    enum status: { active: 0, archived: 1 }
 
     validates :name, presence: true
     validates :status, presence: true

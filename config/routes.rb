@@ -9,5 +9,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :projects, only: [:index, :create, :update, :destroy]
+  resources :projects, only: [:index, :create, :update, :destroy] do
+    resources :tasks, only: [:index, :create, :update, :destroy]
+  end
+
+  
+
 end
