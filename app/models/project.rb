@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+    has_many :tasks, dependent: :destroy
+    
     enum status: { active: 0, archived: 1 }
 
     validates :name, presence: true
