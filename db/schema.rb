@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_23_123157) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_23_140313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "marks", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "h_amount", null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_marks_on_task_id"
+    t.index ["user_id"], name: "index_marks_on_user_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
@@ -46,4 +57,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_23_123157) do
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "marks", "tasks"
+  add_foreign_key "marks", "users"
 end

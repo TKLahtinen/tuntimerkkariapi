@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
     belongs_to :project
+    has_many :marks, dependent: :destroy
 
     enum status: { active: 0, archived: 1 }
 
