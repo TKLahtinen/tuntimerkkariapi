@@ -6,12 +6,13 @@ class TasksController < ApplicationController
     # get all tasks
     def index
         tasks = @project.tasks
-        render json: tasks
+        render json: TaskSerializer.new(tasks).serializable_hash.to_json
     end
 
     # get a specific task
     def show
-        render json: @task
+        task = @project.tasks.find(params[:id])
+        render json: TaskSerializer.new(task).serializable_hash.to_json
     end
 
     # create a new task
