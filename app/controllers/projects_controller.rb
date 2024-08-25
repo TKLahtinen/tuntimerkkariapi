@@ -9,6 +9,12 @@ class ProjectsController < ApplicationController
         render json: ProjectSerializer.new(projects).serializable_hash.to_json
     end
 
+    # get a specific project
+    def show
+        project = Project.find(params[:id])
+        render json: [project]
+    end
+
     # create a new project
 
     def create

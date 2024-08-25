@@ -5,13 +5,13 @@ class MarksController < ApplicationController
 
     # get all marks /tasks/:task_id/marks
     def index
-        marks = Mark.all
+        marks = @task.marks
         render json: MarkSerializer.new(marks).serializable_hash.to_json
     end
 
     # get a specific mark /tasks/:task_id/marks/:id
     def show
-        mark = Mark.find(params[:id])
+        mark = @task.marks.find(params[:id])
         render json: MarkSerializer.new(mark).serializable_hash.to_json
     end
 

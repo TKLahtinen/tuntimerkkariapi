@@ -8,5 +8,9 @@ class ProjectSerializer
 
     attribute :total_hours do |project|
         project.tasks.joins(:marks).sum('marks.h_amount')
-      end
+    end
+
+    attribute :marks_count do |project|
+        project.tasks.joins(:marks).count('marks.id')
+    end
 end
